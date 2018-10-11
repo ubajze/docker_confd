@@ -1,0 +1,76 @@
+module configuration {
+  namespace "http://aviatnet.com/configuration";
+  prefix config;
+
+  import ietf-yang-types { prefix yang; }
+  import ietf-inet-types { prefix inet; }
+
+  organization "Aviat networks";
+
+  list devices {
+    key device-name;
+
+    leaf device-name {
+      type string;
+    }
+
+    leaf deviceType {
+      type enumeration {
+        enum "DUT";
+      }
+    }
+
+    list l2interfaces {
+      key l2interfaceId;
+
+      leaf l2interfaceId {
+        type string;
+      }
+
+      leaf type {
+        type enumeration {
+          enum "l3port";
+          enum "l2port";
+          enum "loopback";
+          enum "vlan";
+        }
+      }
+
+      leaf id {
+        type string;
+      }
+
+      leaf description {
+        type string {
+          length "1..127";
+        }
+      }
+    }
+
+    list l3interfaces {
+      key l3interfaceId;
+
+      leaf l3interfaceId {
+        type string;
+      }
+
+      list family {
+        key familyType;
+
+        leaf familyType {
+          type enumeration {
+            enum "ipv4";
+          }
+        }
+
+        leaf address {
+          type inet:ipv4-address;
+        }
+
+        leaf mask {
+          type inet:ipv4-address;
+        }
+      }
+    }
+  }
+}
