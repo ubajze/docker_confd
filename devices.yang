@@ -1,0 +1,61 @@
+module devices {
+	namespace "http://example.com/devices";
+	prefix "devices";
+
+	import ietf-inet-types { prefix inet; }
+
+	typedef dev-intf {
+		type enumeration {
+			enum eth0;
+			enum eth1;
+			enum eth2;
+			enum eth3;
+		}
+	}
+
+	container devices {
+		list device {
+			key name;
+
+			leaf name { type string; }		
+
+			container interfaces {
+				list interface {
+					key name;
+	
+					leaf name { type dev-intf; }
+	
+					leaf ip { type inet:ipv4-address; }
+					leaf prefix { type uint8; }
+				
+				}
+			}
+
+			container ospf {
+				leaf enabled { type boolean; }
+				leaf area { type uint32; }
+				container interfaces {
+					leaf-list interface { type dev-intf; }
+				}
+			}
+
+			container bgp {
+				leaf enabled { type boolean; }
+				leaf as { type uint32; }
+
+				container neighbors {
+					list neighbor {
+						key id;
+
+						leaf id { type inet:ipv4-address; }
+
+						leaf peer-as { type uint32; }
+					}
+				}
+			
+			}
+
+		}
+
+	}
+}
