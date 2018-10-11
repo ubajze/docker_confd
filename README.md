@@ -4,7 +4,7 @@ To create the docker container add the ConfD installer to this directory. Docker
 
 To build the container use the following command:
 
-```docker build -t <container_name> --build-arg yangfile=<YANG_file_name>```
+```docker build -t <container_name> . --build-arg yangfile=<YANG_file_name>```
 
 The Dockerfile tries to use the <YANG_file_name>.yang, if arg is not specified, the Dockerfile will try to use the configuration.yang.
 

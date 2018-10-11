@@ -1,0 +1,26 @@
+module football_teams {
+	namespace "http://example.com/football-team";
+	prefix "team";
+	grouping player {
+		leaf name { type string; }
+		leaf number { type int8; }
+	}
+	list team {
+                key name;
+                leaf name { type string; }
+		leaf manager { type string; }
+		container goalkeeper {
+			uses player { refine number { default 1;}}
+		}
+		list player {
+			key "name";
+			uses player;
+		}
+		leaf-list captains {
+			type string;
+			max-elements 3;
+		}
+		leaf stadium { type string;}
+	}
+}
+
