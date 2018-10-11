@@ -6,7 +6,7 @@ To build the container use the following command:
 
 ```docker build -t <container_name> --build-arg yangfile=<YANG_file_name>```
 
-The Dockerfile tries uses the <YANG_file_name>.yang, if arg is not specified, the Dockerfile will try to use the configuration.yang.
+The Dockerfile tries to use the <YANG_file_name>.yang, if arg is not specified, the Dockerfile will try to use the configuration.yang.
 
 You can start containers by using the following command:
 
